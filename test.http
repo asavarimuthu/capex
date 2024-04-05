@@ -1,0 +1,20 @@
+####
+
+GET http://localhost:4004/odata/v4/cirheader
+
+####
+
+POST http://localhost:4004/odata/v4/cirheader
+Content-Type: application/json;IEEE754Compatible=true
+
+{"status":"Approved","requestor":"savari","createddate":"2024-03-22",
+"approver":"muthu","approveddate":"2024-03-24","approvercomments":"okay","ecirno":"1111"}
+
+####
+
+POST http://localhost:4004/odata/v4/author
+Content-Type: application/json;IEEE754Compatible=true
+
+{"authorid":111,"authorname":"Muthu","books":[{
+"bookid":12,"title":"Humane","descr":"Mankind","price":100,"stock":150
+}]}

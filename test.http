@@ -7,8 +7,37 @@ GET http://localhost:4004/odata/v4/cirheader
 POST http://localhost:4004/odata/v4/cirheader
 Content-Type: application/json;IEEE754Compatible=true
 
-{"status":"Approved","requestor":"savari","createddate":"2024-03-22",
-"approver":"muthu","approveddate":"2024-03-24","approvercomments":"okay","ecirno":"1111"}
+{"cirno":"",
+"status":"In progress",
+"requestor":"",
+"approver":"",
+"approvercomments":"",
+"ecirno":"",
+"items":[{
+        "functiontype":"Investments Project",
+        "cirno":"",
+        "capbudgettype":"Local Budget",
+        "prjstage":"Fully Funding",
+        "prjtitle":"New Service Jaguar",
+        "prjtitloclang":"",
+        "prjdesc":"prjdesc",
+        "costcenter":1000,
+        "controlarea":1,
+        "companycode":1,
+        "createddate":"2024-04-06",
+        "totreqcapital":8000,
+        "currency":"USD",
+        "fxrate":0.0,
+        "totreqcapitalusd":1,
+        "plantcode":1101,
+        "gbszone":"US",
+        "investtype":"",
+        "investnode":"",
+        "responsiblearea":"Verantwortlicher A",
+        "prjtype":"",
+        "location":"",
+        "remarks":""
+}]}
 
 ####
 

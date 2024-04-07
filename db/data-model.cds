@@ -16,7 +16,7 @@ entity Authors{
   books  : Composition of  many Books on books.author=$self;
 } 
 
-/*
+
 entity CIRLineItems{
     key ID:UUID;
    functiontype:String;
@@ -26,9 +26,10 @@ entity CIRLineItems{
    prjtitle:String;
    prjtitloclang:String;
    prjdesc:String;
-   costcenter:String;
+   costcenter:Integer;
    controlarea:Integer;
    companycode:Integer;
+   createddate:Date;
    totreqcapital:Integer;
    currency:String;
    fxrate:Decimal;
@@ -37,8 +38,8 @@ entity CIRLineItems{
    gbszone:String;
    investtype:String;
    investnode:String;
-   responsiblearea:Integer;
-   prjtype:Integer;
+   responsiblearea:String;
+   prjtype:String;
    location:String;
    remarks:String;
    cirheader:Association to CIRHeaders;
@@ -61,4 +62,3 @@ entity CIRHeaders{
 type Status:String enum{
     Approved; Rejected;
 } 
-*/

@@ -1,0 +1,135 @@
+
+<mvc:View xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.uxap"
+	xmlns:layout="sap.ui.layout"
+	xmlns:m="sap.m"
+
+xmlns:f="sap.ui.layout.form"
+xmlns:core="sap.ui.core"
+    xmlns:form="sap.ui.layout.form"
+xmlns:smartForm="sap.ui.comp.smartform"
+xmlns:smartField="sap.ui.comp.smartfield"
+	xmlns:personal="sap.uxap.sample.ObjectPageFormLayout.controller.blocks"
+	xmlns:employment="sap.uxap.sample.ObjectPageFormLayout.controller.blocks"
+	xmlns:blockcolor="sap.uxap.sample.ObjectPageFormLayout.controller.blocks"
+	controllerName="project1.controller.View1"
+	height="100%">
+	<m:Button text="On Submit" press="onsubmit"></m:Button>
+	<ObjectPageLayout id="ObjectPageLayout" enableLazyLoading="true" upperCaseAnchorBar="false">
+		<headerTitle>
+			<ObjectPageDynamicHeaderTitle>
+				<breadcrumbs>
+					<m:Breadcrumbs>
+						<m:Link text="Page 1 a very long link" press="handleLink1Press"/>
+						<m:Link text="Page 2 long link" press="handleLink2Press"/>
+					</m:Breadcrumbs>
+				</breadcrumbs>
+
+				<expandedHeading>
+					<m:Title text="Denise Smith" wrapping="true"/>
+				</expandedHeading>
+
+				<snappedHeading>
+					<m:FlexBox fitContainer="true" alignItems="Center">
+						<m:Avatar src="./test-resources/sap/uxap/images/imageID_275314.png" class="sapUiTinyMarginEnd"/>
+						<m:Title text="Denise Smith" wrapping="true"/>
+					</m:FlexBox>
+				</snappedHeading>
+
+				<expandedContent>
+					<m:Text text="Senior UI Developer"/>
+				</expandedContent>
+
+				<snappedContent>
+					<m:Text text="Senior UI Developer"/>
+				</snappedContent>
+
+				<snappedTitleOnMobile>
+					<m:Title text="Senior UI Developer"/>
+				</snappedTitleOnMobile>
+
+				<actions>
+					<m:Button text="Edit" type="Emphasized"/>
+					<m:Button type="Transparent" text="Delete"/>
+					<m:Button type="Transparent" text="Copy"/>
+					<m:OverflowToolbarButton icon="sap-icon://action" type="Transparent" text="Share" tooltip="action"/>
+				</actions>
+			</ObjectPageDynamicHeaderTitle>
+		</headerTitle>
+
+		<headerContent>
+			<m:FlexBox wrap="Wrap" fitContainer="true" >
+				<m:Avatar class="sapUiSmallMarginEnd" src="./test-resources/sap/uxap/images/imageID_275314.png" displaySize="L" />
+
+				<layout:VerticalLayout class="sapUiSmallMarginBeginEnd">
+					<m:Link text="+33 6 4512 5158"/>
+					<m:Link text="DeniseSmith@sap.com"/>
+						<layout:HorizontalLayout>
+							<m:Image src="./test-resources/sap/uxap/images/linkedin.png"/>
+							<m:Image src="./test-resources/sap/uxap/images/Twitter.png" class="sapUiSmallMarginBegin"/>
+						</layout:HorizontalLayout>
+				</layout:VerticalLayout>
+
+				<layout:VerticalLayout class="sapUiSmallMarginBeginEnd">
+					<m:Label text="Hello! I am Denise and I use UxAP"/>
+					<m:VBox>
+						<m:Label text="Achieved goals"/>
+						<m:ProgressIndicator percentValue="30" displayValue="30%"/>
+					</m:VBox>
+				</layout:VerticalLayout>
+
+				<layout:VerticalLayout class="sapUiSmallMarginBeginEnd">
+					<m:Label text="San Jose, USA"/>
+				</layout:VerticalLayout>
+			</m:FlexBox>
+		</headerContent>
+
+		<sections>
+			<ObjectPageSection titleUppercase="false" title="Personal">
+				<subSections>
+					<ObjectPageSubSection titleUppercase="false">
+						<blocks>
+		   <form:SimpleForm id="request-information-form" editable="false" layout="ResponsiveGridLayout" singleContainerFullSize="false">
+            <form:content>
+                <core:Title id="vacation-timerange-heading" text="A new order has been received. Please review and confirm whether the requirements can be met or not."/>
+                <m:Label id="customer-name-label" text="Customer Name" labelFor="customer-name-field"/>
+                <m:Input id="customer-name-field" value="{context>/customerName}" editable="false"/>
+                <m:Label id="order-number-label" text="Order Number" labelFor="order-number-field"/>
+                <m:Input id="order-number-field" value="{context>/orderNumber}" editable="false"/>
+                <m:Label id="order-amount-label" text="Order Amount" labelFor="order-amount-field"/>
+                <m:Input id="order-amount-field" value="{context>/orderAmount}" editable="false"/>
+                <m:Label id="order-date-label" text="Order Date" labelFor="order-date-field"/>
+                <m:Input id="order-date-field" value="{context>/orderDate}" editable="false"/>
+                <m:Label id="shipping-country-label" text="Shipping Country" labelFor="shipping-country-field"/>
+                <m:Input id="shipping-country-field" value="{context>/shippingCountry}" editable="false"/>
+                <m:Label id="expected-delivery-date-label" text="Expected Delivery Date" labelFor="expected-delivery-date-field"/>
+                <m:Input id="expected-delivery-date-field" value="{context>/expectedDeliveryDate}" editable="false"/>
+            </form:content>
+        </form:SimpleForm>
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+
+			<ObjectPageSection titleUppercase="false" title="Employment">
+				<subSections>
+					<ObjectPageSubSection title="Employment" titleUppercase="false">
+					<blocks>
+						   <form:SimpleForm id="request-information-form1" editable="false" layout="ResponsiveGridLayout" singleContainerFullSize="false">
+            <form:content>
+                <core:Title id="vacation-timerange-1" text="A new order has been received. Please review and confirm whether the requirements can be met or not."/>
+                <m:Label id="customer-name-label1" text="Customer Name" labelFor="customer-name-field"/>
+                <m:Input id="customer-name-field1" value="{context>/customerName}" editable="false"/>
+                <m:Label id="order-number-12" text="Order Number" labelFor="order-number-field"/>
+                <m:Input id="order-number-1" value="{context>/orderNumber}" editable="false"/>
+                <m:Input id="order-amount-1" value="{context>/orderAmount}" editable="false"/>
+                
+            </form:content>
+        </form:SimpleForm>
+					</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+		</sections>
+	</ObjectPageLayout>
+</mvc:View>

@@ -2,25 +2,14 @@ namespace capex;
 
 using { cuid ,managed} from '@sap/cds/common';
 
-entity Books {
-  key bookid:Integer;//UUID;
-  title  : String;
-  descr  : String;
-  price:Integer;
-  stock:Integer;
-  author : Association to Authors;
+entity Currency{
+    currencycode:String;
+    usdvalue:Decimal;
 }
-entity Authors{
-  key authorid:Integer; //UUID;
-  authorname   : String;
-  books  : Composition of  many Books on books.author=$self;
-} 
-
 
 entity CIRLineItems{
-    key ID:UUID;
+   key ID:UUID;
    functiontype:String;
-   cirno:String;
    capbudgettype:String;
    prjstage:String;
    prjtitle:String;
@@ -30,10 +19,13 @@ entity CIRLineItems{
    controlarea:Integer;
    companycode:Integer;
    createddate:Date;
+   createddatestr:String;    //Field created to get the extracted value which is in string format
+   closuredate:Date;      //if the closuredateS is in holiday next working day will be considered 
+   closuredatestr:String;   //Field created to get the extracted value which is in string format
    totreqcapital:Integer;
    currency:String;
    fxrate:Decimal;
-   totreqcapitalusd:Integer;
+   totreqcapitalusd:Decimal;
    plantcode:Integer;
    gbszone:String;
    investtype:String;
@@ -60,5 +52,5 @@ entity CIRHeaders{
 
 
 type Status:String enum{
-    Approved; Rejected;
+    Progress; Approved; Rejected;
 } 

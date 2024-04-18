@@ -1,0 +1,1911 @@
+{
+  "openapi": "3.0.2",
+  "info": {
+    "title": "Service for namespace capexService",
+    "description": "This service is located at [/odata/v4/](/odata/v4/)",
+    "version": ""
+  },
+  "x-sap-api-type": "ODATAV4",
+  "x-odata-version": "4.01",
+  "x-sap-shortText": "Service for namespace capexService",
+  "servers": [
+    {
+      "url": "/odata/v4"
+    }
+  ],
+  "tags": [
+    {
+      "name": "cirheader"
+    },
+    {
+      "name": "cirlineitem"
+    },
+    {
+      "name": "currency"
+    }
+  ],
+  "paths": {
+    "/$batch": {
+      "post": {
+        "summary": "Sends a group of requests",
+        "description": "Group multiple requests into a single request payload, see [Batch Requests](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_BatchRequests).\n\n*Please note that \"Try it out\" is not supported for this request.*",
+        "tags": [
+          "Batch Requests"
+        ],
+        "requestBody": {
+          "required": true,
+          "description": "Batch request",
+          "content": {
+            "multipart/mixed;boundary=request-separator": {
+              "schema": {
+                "type": "string"
+              },
+              "example": "--request-separator\nContent-Type: application/http\nContent-Transfer-Encoding: binary\n\nGET cirheader HTTP/1.1\nAccept: application/json\n\n\n--request-separator--"
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Batch response",
+            "content": {
+              "multipart/mixed": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "--response-separator\nContent-Type: application/http\n\nHTTP/1.1 200 OK\nContent-Type: application/json\n\n{...}\n--response-separator--"
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/cirheader": {
+      "get": {
+        "summary": "Retrieves a list of cirheader.",
+        "tags": [
+          "cirheader"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/top"
+          },
+          {
+            "$ref": "#/components/parameters/skip"
+          },
+          {
+            "$ref": "#/components/parameters/search"
+          },
+          {
+            "name": "$filter",
+            "description": "Filter items by property values, see [Filtering](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionfilter)",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/count"
+          },
+          {
+            "name": "$orderby",
+            "description": "Order items by property values, see [Sorting](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionorderby)",
+            "in": "query",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "ID",
+                  "ID desc",
+                  "cirno",
+                  "cirno desc",
+                  "status",
+                  "status desc",
+                  "requestor",
+                  "requestor desc",
+                  "createddate",
+                  "createddate desc",
+                  "approver",
+                  "approver desc",
+                  "approveddate",
+                  "approveddate desc",
+                  "approvercomments",
+                  "approvercomments desc",
+                  "ecirno",
+                  "ecirno desc"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$select",
+            "description": "Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)",
+            "in": "query",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "ID",
+                  "cirno",
+                  "status",
+                  "requestor",
+                  "createddate",
+                  "approver",
+                  "approveddate",
+                  "approvercomments",
+                  "ecirno"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "description": "The value of $expand query option is a comma-separated list of navigation property names, stream property names, or $value indicating the stream content of a media-entity. The corresponding related entities and stream values will be represented inline, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "in": "query",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "*",
+                  "items"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved cirheader",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "Collection of cirheader",
+                  "properties": {
+                    "@count": {
+                      "$ref": "#/components/schemas/count"
+                    },
+                    "value": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/capexService.cirheader"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "post": {
+        "summary": "Creates a single cirheader.",
+        "tags": [
+          "cirheader"
+        ],
+        "requestBody": {
+          "description": "New cirheader",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/capexService.cirheader-create"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created cirheader",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/capexService.cirheader"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/cirheader({ID})": {
+      "parameters": [
+        {
+          "description": "key: ID",
+          "in": "path",
+          "name": "ID",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef"
+          }
+        }
+      ],
+      "get": {
+        "summary": "Retrieves a single cirheader.",
+        "tags": [
+          "cirheader"
+        ],
+        "parameters": [
+          {
+            "name": "$select",
+            "description": "Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)",
+            "in": "query",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "ID",
+                  "cirno",
+                  "status",
+                  "requestor",
+                  "createddate",
+                  "approver",
+                  "approveddate",
+                  "approvercomments",
+                  "ecirno"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "description": "The value of $expand query option is a comma-separated list of navigation property names, stream property names, or $value indicating the stream content of a media-entity. The corresponding related entities and stream values will be represented inline, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "in": "query",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "*",
+                  "items"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved cirheader",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/capexService.cirheader"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "patch": {
+        "summary": "Changes a single cirheader.",
+        "tags": [
+          "cirheader"
+        ],
+        "requestBody": {
+          "description": "New property values",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/capexService.cirheader-update"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "Success"
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Deletes a single cirheader.",
+        "tags": [
+          "cirheader"
+        ],
+        "responses": {
+          "204": {
+            "description": "Success"
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/cirheader({ID})/items": {
+      "parameters": [
+        {
+          "description": "key: ID",
+          "in": "path",
+          "name": "ID",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef"
+          }
+        }
+      ],
+      "get": {
+        "summary": "Retrieves a list of items of a cirheader.",
+        "tags": [
+          "cirheader",
+          "cirlineitem"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/top"
+          },
+          {
+            "$ref": "#/components/parameters/skip"
+          },
+          {
+            "$ref": "#/components/parameters/search"
+          },
+          {
+            "name": "$filter",
+            "description": "Filter items by property values, see [Filtering](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionfilter)",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/count"
+          },
+          {
+            "name": "$orderby",
+            "description": "Order items by property values, see [Sorting](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionorderby)",
+            "in": "query",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "ID",
+                  "ID desc",
+                  "functiontype",
+                  "functiontype desc",
+                  "capbudgettype",
+                  "capbudgettype desc",
+                  "prjstage",
+                  "prjstage desc",
+                  "prjtitle",
+                  "prjtitle desc",
+                  "prjtitloclang",
+                  "prjtitloclang desc",
+                  "prjdesc",
+                  "prjdesc desc",
+                  "costcenter",
+                  "costcenter desc",
+                  "controlarea",
+                  "controlarea desc",
+                  "companycode",
+                  "companycode desc",
+                  "createddate",
+                  "createddate desc",
+                  "createddatestr",
+                  "createddatestr desc",
+                  "closuredate",
+                  "closuredate desc",
+                  "closuredatestr",
+                  "closuredatestr desc",
+                  "totreqcapital",
+                  "totreqcapital desc",
+                  "currency",
+                  "currency desc",
+                  "fxrate",
+                  "fxrate desc",
+                  "totreqcapitalusd",
+                  "totreqcapitalusd desc",
+                  "plantcode",
+                  "plantcode desc",
+                  "gbszone",
+                  "gbszone desc",
+                  "investtype",
+                  "investtype desc",
+                  "investnode",
+                  "investnode desc",
+                  "responsiblearea",
+                  "responsiblearea desc",
+                  "prjtype",
+                  "prjtype desc",
+                  "location",
+                  "location desc",
+                  "remarks",
+                  "remarks desc",
+                  "cirheader_ID",
+                  "cirheader_ID desc"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$select",
+            "description": "Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)",
+            "in": "query",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "ID",
+                  "functiontype",
+                  "capbudgettype",
+                  "prjstage",
+                  "prjtitle",
+                  "prjtitloclang",
+                  "prjdesc",
+                  "costcenter",
+                  "controlarea",
+                  "companycode",
+                  "createddate",
+                  "createddatestr",
+                  "closuredate",
+                  "closuredatestr",
+                  "totreqcapital",
+                  "currency",
+                  "fxrate",
+                  "totreqcapitalusd",
+                  "plantcode",
+                  "gbszone",
+                  "investtype",
+                  "investnode",
+                  "responsiblearea",
+                  "prjtype",
+                  "location",
+                  "remarks",
+                  "cirheader_ID"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "description": "The value of $expand query option is a comma-separated list of navigation property names, stream property names, or $value indicating the stream content of a media-entity. The corresponding related entities and stream values will be represented inline, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "in": "query",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "*",
+                  "cirheader"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved items",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "Collection of cirlineitem",
+                  "properties": {
+                    "@count": {
+                      "$ref": "#/components/schemas/count"
+                    },
+                    "value": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/capexService.cirlineitem"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "post": {
+        "summary": "Creates a single item of a cirheader.",
+        "tags": [
+          "cirheader",
+          "cirlineitem"
+        ],
+        "requestBody": {
+          "description": "New item",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/capexService.cirlineitem-create"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created item",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/capexService.cirlineitem"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/cirlineitem": {
+      "get": {
+        "summary": "Retrieves a list of cirlineitem.",
+        "tags": [
+          "cirlineitem"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/top"
+          },
+          {
+            "$ref": "#/components/parameters/skip"
+          },
+          {
+            "$ref": "#/components/parameters/search"
+          },
+          {
+            "name": "$filter",
+            "description": "Filter items by property values, see [Filtering](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionfilter)",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/count"
+          },
+          {
+            "name": "$orderby",
+            "description": "Order items by property values, see [Sorting](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionorderby)",
+            "in": "query",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "ID",
+                  "ID desc",
+                  "functiontype",
+                  "functiontype desc",
+                  "capbudgettype",
+                  "capbudgettype desc",
+                  "prjstage",
+                  "prjstage desc",
+                  "prjtitle",
+                  "prjtitle desc",
+                  "prjtitloclang",
+                  "prjtitloclang desc",
+                  "prjdesc",
+                  "prjdesc desc",
+                  "costcenter",
+                  "costcenter desc",
+                  "controlarea",
+                  "controlarea desc",
+                  "companycode",
+                  "companycode desc",
+                  "createddate",
+                  "createddate desc",
+                  "createddatestr",
+                  "createddatestr desc",
+                  "closuredate",
+                  "closuredate desc",
+                  "closuredatestr",
+                  "closuredatestr desc",
+                  "totreqcapital",
+                  "totreqcapital desc",
+                  "currency",
+                  "currency desc",
+                  "fxrate",
+                  "fxrate desc",
+                  "totreqcapitalusd",
+                  "totreqcapitalusd desc",
+                  "plantcode",
+                  "plantcode desc",
+                  "gbszone",
+                  "gbszone desc",
+                  "investtype",
+                  "investtype desc",
+                  "investnode",
+                  "investnode desc",
+                  "responsiblearea",
+                  "responsiblearea desc",
+                  "prjtype",
+                  "prjtype desc",
+                  "location",
+                  "location desc",
+                  "remarks",
+                  "remarks desc",
+                  "cirheader_ID",
+                  "cirheader_ID desc"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$select",
+            "description": "Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)",
+            "in": "query",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "ID",
+                  "functiontype",
+                  "capbudgettype",
+                  "prjstage",
+                  "prjtitle",
+                  "prjtitloclang",
+                  "prjdesc",
+                  "costcenter",
+                  "controlarea",
+                  "companycode",
+                  "createddate",
+                  "createddatestr",
+                  "closuredate",
+                  "closuredatestr",
+                  "totreqcapital",
+                  "currency",
+                  "fxrate",
+                  "totreqcapitalusd",
+                  "plantcode",
+                  "gbszone",
+                  "investtype",
+                  "investnode",
+                  "responsiblearea",
+                  "prjtype",
+                  "location",
+                  "remarks",
+                  "cirheader_ID"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "description": "The value of $expand query option is a comma-separated list of navigation property names, stream property names, or $value indicating the stream content of a media-entity. The corresponding related entities and stream values will be represented inline, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "in": "query",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "*",
+                  "cirheader"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved cirlineitem",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "Collection of cirlineitem",
+                  "properties": {
+                    "@count": {
+                      "$ref": "#/components/schemas/count"
+                    },
+                    "value": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/capexService.cirlineitem"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "post": {
+        "summary": "Creates a single cirlineitem.",
+        "tags": [
+          "cirlineitem"
+        ],
+        "requestBody": {
+          "description": "New cirlineitem",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/capexService.cirlineitem-create"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created cirlineitem",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/capexService.cirlineitem"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/cirlineitem({ID})": {
+      "parameters": [
+        {
+          "description": "key: ID",
+          "in": "path",
+          "name": "ID",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef"
+          }
+        }
+      ],
+      "get": {
+        "summary": "Retrieves a single cirlineitem.",
+        "tags": [
+          "cirlineitem"
+        ],
+        "parameters": [
+          {
+            "name": "$select",
+            "description": "Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)",
+            "in": "query",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "ID",
+                  "functiontype",
+                  "capbudgettype",
+                  "prjstage",
+                  "prjtitle",
+                  "prjtitloclang",
+                  "prjdesc",
+                  "costcenter",
+                  "controlarea",
+                  "companycode",
+                  "createddate",
+                  "createddatestr",
+                  "closuredate",
+                  "closuredatestr",
+                  "totreqcapital",
+                  "currency",
+                  "fxrate",
+                  "totreqcapitalusd",
+                  "plantcode",
+                  "gbszone",
+                  "investtype",
+                  "investnode",
+                  "responsiblearea",
+                  "prjtype",
+                  "location",
+                  "remarks",
+                  "cirheader_ID"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "description": "The value of $expand query option is a comma-separated list of navigation property names, stream property names, or $value indicating the stream content of a media-entity. The corresponding related entities and stream values will be represented inline, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "in": "query",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "*",
+                  "cirheader"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved cirlineitem",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/capexService.cirlineitem"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "patch": {
+        "summary": "Changes a single cirlineitem.",
+        "tags": [
+          "cirlineitem"
+        ],
+        "requestBody": {
+          "description": "New property values",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/capexService.cirlineitem-update"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "Success"
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Deletes a single cirlineitem.",
+        "tags": [
+          "cirlineitem"
+        ],
+        "responses": {
+          "204": {
+            "description": "Success"
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/cirlineitem({ID})/cirheader": {
+      "parameters": [
+        {
+          "description": "key: ID",
+          "in": "path",
+          "name": "ID",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef"
+          }
+        }
+      ],
+      "get": {
+        "summary": "Retrieves cirheader of a cirlineitem.",
+        "tags": [
+          "cirlineitem",
+          "cirheader"
+        ],
+        "parameters": [
+          {
+            "name": "$select",
+            "description": "Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)",
+            "in": "query",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "ID",
+                  "cirno",
+                  "status",
+                  "requestor",
+                  "createddate",
+                  "approver",
+                  "approveddate",
+                  "approvercomments",
+                  "ecirno"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "description": "The value of $expand query option is a comma-separated list of navigation property names, stream property names, or $value indicating the stream content of a media-entity. The corresponding related entities and stream values will be represented inline, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "in": "query",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "*",
+                  "items"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved cirheader",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/capexService.cirheader"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/currency": {
+      "get": {
+        "summary": "Retrieves a list of currency.",
+        "tags": [
+          "currency"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/top"
+          },
+          {
+            "$ref": "#/components/parameters/skip"
+          },
+          {
+            "$ref": "#/components/parameters/search"
+          },
+          {
+            "name": "$filter",
+            "description": "Filter items by property values, see [Filtering](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionfilter)",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/count"
+          },
+          {
+            "name": "$orderby",
+            "description": "Order items by property values, see [Sorting](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionorderby)",
+            "in": "query",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "currencycode",
+                  "currencycode desc",
+                  "usdvalue",
+                  "usdvalue desc"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$select",
+            "description": "Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)",
+            "in": "query",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "currencycode",
+                  "usdvalue"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved currency",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "Collection of currency",
+                  "properties": {
+                    "@count": {
+                      "$ref": "#/components/schemas/count"
+                    },
+                    "value": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/capexService.currency"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "post": {
+        "summary": "Creates a single currency.",
+        "tags": [
+          "currency"
+        ],
+        "requestBody": {
+          "description": "New currency",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/capexService.currency-create"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created currency",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/capexService.currency"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "capexService.cirheader": {
+        "title": "cirheader",
+        "type": "object",
+        "properties": {
+          "ID": {
+            "type": "string",
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef"
+          },
+          "cirno": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "Progress",
+              "Approved",
+              "Rejected"
+            ],
+            "nullable": true
+          },
+          "requestor": {
+            "type": "string",
+            "nullable": true
+          },
+          "createddate": {
+            "type": "string",
+            "format": "date",
+            "example": "2017-04-13",
+            "nullable": true
+          },
+          "approver": {
+            "type": "string",
+            "nullable": true
+          },
+          "approveddate": {
+            "type": "string",
+            "format": "date",
+            "example": "2017-04-13",
+            "nullable": true
+          },
+          "approvercomments": {
+            "type": "string",
+            "nullable": true
+          },
+          "ecirno": {
+            "type": "string",
+            "nullable": true
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/capexService.cirlineitem"
+            }
+          },
+          "items@count": {
+            "$ref": "#/components/schemas/count"
+          }
+        }
+      },
+      "capexService.cirheader-create": {
+        "title": "cirheader (for create)",
+        "type": "object",
+        "properties": {
+          "ID": {
+            "type": "string",
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef"
+          },
+          "cirno": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "Progress",
+              "Approved",
+              "Rejected"
+            ],
+            "nullable": true
+          },
+          "requestor": {
+            "type": "string",
+            "nullable": true
+          },
+          "createddate": {
+            "type": "string",
+            "format": "date",
+            "example": "2017-04-13",
+            "nullable": true
+          },
+          "approver": {
+            "type": "string",
+            "nullable": true
+          },
+          "approveddate": {
+            "type": "string",
+            "format": "date",
+            "example": "2017-04-13",
+            "nullable": true
+          },
+          "approvercomments": {
+            "type": "string",
+            "nullable": true
+          },
+          "ecirno": {
+            "type": "string",
+            "nullable": true
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/capexService.cirlineitem-create"
+            }
+          }
+        },
+        "required": [
+          "ID"
+        ]
+      },
+      "capexService.cirheader-update": {
+        "title": "cirheader (for update)",
+        "type": "object",
+        "properties": {
+          "cirno": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "Progress",
+              "Approved",
+              "Rejected"
+            ],
+            "nullable": true
+          },
+          "requestor": {
+            "type": "string",
+            "nullable": true
+          },
+          "createddate": {
+            "type": "string",
+            "format": "date",
+            "example": "2017-04-13",
+            "nullable": true
+          },
+          "approver": {
+            "type": "string",
+            "nullable": true
+          },
+          "approveddate": {
+            "type": "string",
+            "format": "date",
+            "example": "2017-04-13",
+            "nullable": true
+          },
+          "approvercomments": {
+            "type": "string",
+            "nullable": true
+          },
+          "ecirno": {
+            "type": "string",
+            "nullable": true
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/capexService.cirlineitem-create"
+            }
+          }
+        }
+      },
+      "capexService.cirlineitem": {
+        "title": "cirlineitem",
+        "type": "object",
+        "properties": {
+          "ID": {
+            "type": "string",
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef"
+          },
+          "functiontype": {
+            "type": "string",
+            "nullable": true
+          },
+          "capbudgettype": {
+            "type": "string",
+            "nullable": true
+          },
+          "prjstage": {
+            "type": "string",
+            "nullable": true
+          },
+          "prjtitle": {
+            "type": "string",
+            "nullable": true
+          },
+          "prjtitloclang": {
+            "type": "string",
+            "nullable": true
+          },
+          "prjdesc": {
+            "type": "string",
+            "nullable": true
+          },
+          "costcenter": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "controlarea": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "companycode": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "createddate": {
+            "type": "string",
+            "format": "date",
+            "example": "2017-04-13",
+            "nullable": true
+          },
+          "createddatestr": {
+            "type": "string",
+            "nullable": true
+          },
+          "closuredate": {
+            "type": "string",
+            "format": "date",
+            "example": "2017-04-13",
+            "nullable": true
+          },
+          "closuredatestr": {
+            "type": "string",
+            "nullable": true
+          },
+          "totreqcapital": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "currency": {
+            "type": "string",
+            "nullable": true
+          },
+          "fxrate": {
+            "anyOf": [
+              {
+                "type": "number",
+                "format": "decimal"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "example": 0,
+            "nullable": true
+          },
+          "totreqcapitalusd": {
+            "anyOf": [
+              {
+                "type": "number",
+                "format": "decimal"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "example": 0,
+            "nullable": true
+          },
+          "plantcode": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "gbszone": {
+            "type": "string",
+            "nullable": true
+          },
+          "investtype": {
+            "type": "string",
+            "nullable": true
+          },
+          "investnode": {
+            "type": "string",
+            "nullable": true
+          },
+          "responsiblearea": {
+            "type": "string",
+            "nullable": true
+          },
+          "prjtype": {
+            "type": "string",
+            "nullable": true
+          },
+          "location": {
+            "type": "string",
+            "nullable": true
+          },
+          "remarks": {
+            "type": "string",
+            "nullable": true
+          },
+          "cirheader": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/capexService.cirheader"
+              }
+            ],
+            "nullable": true
+          },
+          "cirheader_ID": {
+            "type": "string",
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef",
+            "nullable": true
+          }
+        }
+      },
+      "capexService.cirlineitem-create": {
+        "title": "cirlineitem (for create)",
+        "type": "object",
+        "properties": {
+          "ID": {
+            "type": "string",
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef"
+          },
+          "functiontype": {
+            "type": "string",
+            "nullable": true
+          },
+          "capbudgettype": {
+            "type": "string",
+            "nullable": true
+          },
+          "prjstage": {
+            "type": "string",
+            "nullable": true
+          },
+          "prjtitle": {
+            "type": "string",
+            "nullable": true
+          },
+          "prjtitloclang": {
+            "type": "string",
+            "nullable": true
+          },
+          "prjdesc": {
+            "type": "string",
+            "nullable": true
+          },
+          "costcenter": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "controlarea": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "companycode": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "createddate": {
+            "type": "string",
+            "format": "date",
+            "example": "2017-04-13",
+            "nullable": true
+          },
+          "createddatestr": {
+            "type": "string",
+            "nullable": true
+          },
+          "closuredate": {
+            "type": "string",
+            "format": "date",
+            "example": "2017-04-13",
+            "nullable": true
+          },
+          "closuredatestr": {
+            "type": "string",
+            "nullable": true
+          },
+          "totreqcapital": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "currency": {
+            "type": "string",
+            "nullable": true
+          },
+          "fxrate": {
+            "anyOf": [
+              {
+                "type": "number",
+                "format": "decimal"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "example": 0,
+            "nullable": true
+          },
+          "totreqcapitalusd": {
+            "anyOf": [
+              {
+                "type": "number",
+                "format": "decimal"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "example": 0,
+            "nullable": true
+          },
+          "plantcode": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "gbszone": {
+            "type": "string",
+            "nullable": true
+          },
+          "investtype": {
+            "type": "string",
+            "nullable": true
+          },
+          "investnode": {
+            "type": "string",
+            "nullable": true
+          },
+          "responsiblearea": {
+            "type": "string",
+            "nullable": true
+          },
+          "prjtype": {
+            "type": "string",
+            "nullable": true
+          },
+          "location": {
+            "type": "string",
+            "nullable": true
+          },
+          "remarks": {
+            "type": "string",
+            "nullable": true
+          },
+          "cirheader_ID": {
+            "type": "string",
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef",
+            "nullable": true
+          }
+        },
+        "required": [
+          "ID"
+        ]
+      },
+      "capexService.cirlineitem-update": {
+        "title": "cirlineitem (for update)",
+        "type": "object",
+        "properties": {
+          "functiontype": {
+            "type": "string",
+            "nullable": true
+          },
+          "capbudgettype": {
+            "type": "string",
+            "nullable": true
+          },
+          "prjstage": {
+            "type": "string",
+            "nullable": true
+          },
+          "prjtitle": {
+            "type": "string",
+            "nullable": true
+          },
+          "prjtitloclang": {
+            "type": "string",
+            "nullable": true
+          },
+          "prjdesc": {
+            "type": "string",
+            "nullable": true
+          },
+          "costcenter": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "controlarea": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "companycode": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "createddate": {
+            "type": "string",
+            "format": "date",
+            "example": "2017-04-13",
+            "nullable": true
+          },
+          "createddatestr": {
+            "type": "string",
+            "nullable": true
+          },
+          "closuredate": {
+            "type": "string",
+            "format": "date",
+            "example": "2017-04-13",
+            "nullable": true
+          },
+          "closuredatestr": {
+            "type": "string",
+            "nullable": true
+          },
+          "totreqcapital": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "currency": {
+            "type": "string",
+            "nullable": true
+          },
+          "fxrate": {
+            "anyOf": [
+              {
+                "type": "number",
+                "format": "decimal"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "example": 0,
+            "nullable": true
+          },
+          "totreqcapitalusd": {
+            "anyOf": [
+              {
+                "type": "number",
+                "format": "decimal"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "example": 0,
+            "nullable": true
+          },
+          "plantcode": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "gbszone": {
+            "type": "string",
+            "nullable": true
+          },
+          "investtype": {
+            "type": "string",
+            "nullable": true
+          },
+          "investnode": {
+            "type": "string",
+            "nullable": true
+          },
+          "responsiblearea": {
+            "type": "string",
+            "nullable": true
+          },
+          "prjtype": {
+            "type": "string",
+            "nullable": true
+          },
+          "location": {
+            "type": "string",
+            "nullable": true
+          },
+          "remarks": {
+            "type": "string",
+            "nullable": true
+          },
+          "cirheader_ID": {
+            "type": "string",
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef",
+            "nullable": true
+          }
+        }
+      },
+      "capexService.currency": {
+        "title": "currency",
+        "type": "object",
+        "properties": {
+          "currencycode": {
+            "type": "string",
+            "nullable": true
+          },
+          "usdvalue": {
+            "anyOf": [
+              {
+                "type": "number",
+                "format": "decimal"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "example": 0,
+            "nullable": true
+          }
+        }
+      },
+      "capexService.currency-create": {
+        "title": "currency (for create)",
+        "type": "object",
+        "properties": {
+          "currencycode": {
+            "type": "string",
+            "nullable": true
+          },
+          "usdvalue": {
+            "anyOf": [
+              {
+                "type": "number",
+                "format": "decimal"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "example": 0,
+            "nullable": true
+          }
+        }
+      },
+      "count": {
+        "anyOf": [
+          {
+            "type": "number"
+          },
+          {
+            "type": "string"
+          }
+        ],
+        "description": "The number of entities in the collection. Available when using the [$count](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptioncount) query option."
+      },
+      "error": {
+        "type": "object",
+        "required": [
+          "error"
+        ],
+        "properties": {
+          "error": {
+            "type": "object",
+            "required": [
+              "code",
+              "message"
+            ],
+            "properties": {
+              "code": {
+                "type": "string"
+              },
+              "message": {
+                "type": "string"
+              },
+              "target": {
+                "type": "string"
+              },
+              "details": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": [
+                    "code",
+                    "message"
+                  ],
+                  "properties": {
+                    "code": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "target": {
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "innererror": {
+                "type": "object",
+                "description": "The structure of this object is service-specific"
+              }
+            }
+          }
+        }
+      }
+    },
+    "parameters": {
+      "top": {
+        "name": "$top",
+        "in": "query",
+        "description": "Show only the first n items, see [Paging - Top](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptiontop)",
+        "schema": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "example": 50
+      },
+      "skip": {
+        "name": "$skip",
+        "in": "query",
+        "description": "Skip the first n items, see [Paging - Skip](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionskip)",
+        "schema": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "count": {
+        "name": "$count",
+        "in": "query",
+        "description": "Include count of items, see [Count](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptioncount)",
+        "schema": {
+          "type": "boolean"
+        }
+      },
+      "search": {
+        "name": "$search",
+        "in": "query",
+        "description": "Search items by search phrases, see [Searching](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionsearch)",
+        "schema": {
+          "type": "string"
+        }
+      }
+    },
+    "responses": {
+      "error": {
+        "description": "Error",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/error"
+            }
+          }
+        }
+      }
+    }
+  }
+}

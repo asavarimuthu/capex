@@ -4,6 +4,38 @@ GET http://localhost:4004/odata/v4/cirheader
 
 ####
 
+PATCH http://localhost:4004/odata/v4/cirheader(969ebe14-ad21-43ec-be92-b51b90a30572)
+Content-Type: application/json
+
+{"cirno":"CIR-40",
+"status":"Approved",
+"approver":"muthu",
+"approveddate":"2024-04-08",
+"approvercomments":"Approved",
+"ecirno":"ecirno-40"}
+
+#####
+POST http://localhost:4004/odata/v4/cirheader
+Content-Type: application/json;IEEE754Compatible=true
+
+{
+  "items": [
+    {
+      "companycode": 567,
+      "responsiblearea": "resSavarimuthu",
+      "totreqcapital": 20000,
+      "currency": "EUR",
+      "plantcode": 1234,
+      "functiontype": "functiontyp",
+      "prjdesc": "prjec",
+      "createddatestr": "02/04/2024",
+       "closuredatestr": "02/04/2025"
+    }
+  ]
+}
+
+#####
+
 POST http://localhost:4004/odata/v4/cirheader
 Content-Type: application/json;IEEE754Compatible=true
 
@@ -15,7 +47,6 @@ Content-Type: application/json;IEEE754Compatible=true
 "ecirno":"",
 "items":[{
         "functiontype":"Investments Project",
-        "cirno":"",
         "capbudgettype":"Local Budget",
         "prjstage":"Fully Funding",
         "prjtitle":"New Service Jaguar",
@@ -24,9 +55,10 @@ Content-Type: application/json;IEEE754Compatible=true
         "costcenter":1000,
         "controlarea":1,
         "companycode":1,
-        "createddate":"2024-04-06",
+        "createddatestr":"02/04/2024",
+        "closuredatestr":"02/05/2024",
         "totreqcapital":8000,
-        "currency":"USD",
+        "currency":"EUR",
         "fxrate":0.0,
         "totreqcapitalusd":1,
         "plantcode":1101,
@@ -47,3 +79,18 @@ Content-Type: application/json;IEEE754Compatible=true
 {"authorid":111,"authorname":"Muthu","books":[{
 "bookid":12,"title":"Humane","descr":"Mankind","price":100,"stock":150
 }]}
+
+######
+
+
+POST http://localhost:4004/odata/v4/cirheader
+Content-Type: application/json;IEEE754Compatible=true
+
+{
+  "items":[{
+    "totreqcapital":10000,
+    "currency":"INR",
+    "createddatestr":"12/04/2024",
+    "closuredatestr":"13/04/2024"
+  }]
+}
